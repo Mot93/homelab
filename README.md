@@ -11,6 +11,15 @@ Optional `.env`:
     - File with sensistive data that will be loaded on the server
 ### How to use `compose.sh`
 Launch `compose.sh` followed by a the name of a directory containing a `compose.yaml` file.
+
+Example: `compose.sh pihole`
+
+With flags: `compose.sh <env> -dr`
+
 Options:
-    - `-d` run `docker compose down` down instead of `docker compose up`
-    - `-r` remove all the images required by the docker compose configurations
+- `-d` run `docker compose down` down instead of `docker compose up`
+
+    Example: `compose.sh pihole -d`
+- `-r` remove all the images required by the docker compose configurations
+
+    Example: `compose.sh pihole -r`
