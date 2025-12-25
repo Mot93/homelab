@@ -23,3 +23,6 @@ Options:
 - `-r` remove all the images required by the docker compose configurations
 
     Example: `compose.sh pihole -r`
+- `-p` pull all the images defined in the compose
+
+    Example: `compose.sh pihole -p`

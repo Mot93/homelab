@@ -13,9 +13,14 @@ if [ ! -f $compose_file ]; then
   exit 2
 fi
 
+# Initialize flags
+compose_down=false
+remove_images=false
+pull_images=false
+
 # Managing flags
 shift # Move past the first argument so getopts can read flags
-while getopts ":dr" opt; do
+while getopts ":drp" opt; do
   case $opt in
     # -d instead of docker compose up, run docker compose down
     d)
@@ -25,6 +30,11 @@ while getopts ":dr" opt; do
     r)
       remove_images=true
       ;;
+    # -p update the image of the container 
+    # This is ment for all the 
+    p)
+      pull_images=true
+      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -32,11 +42,19 @@ while getopts ":dr" opt; do
   esac
 done
 
-if [ "$compose_down" = true ]; then
-  docker compose --file $compose_file down
-  if [ "$remove_images" = true ]; then
+# Main switch-case logic based on flag values
+case "$compose_down,$remove_images,$pull_images" in
+  true,false,*)
+    docker compose --file $compose_file down
+    ;;
+  true,true,*)
+    docker compose --file $compose_file down
     docker compose --file $compose_file down --rmi 'all'
-  fi
-else
-  docker compose --file $compose_file up -d 
-fi
+    ;;
+  *,*,true)
+    docker compose --file $compose_file pull
+    ;;
+  *)
+    docker compose --file $compose_file up -d
+    ;;
+esac
