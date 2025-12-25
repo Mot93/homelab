@@ -17,16 +17,21 @@ fi
 compose_down=false
 remove_images=false
 pull_images=false
+compose_restart=false
 
 # Managing flags
 shift # Move past the first argument so getopts can read flags
-while getopts ":drp" opt; do
+while getopts ":depr" opt; do
   case $opt in
     # -d instead of docker compose up, run docker compose down
     d)
       compose_down=true
       ;;
-    # -r removes all imges from the machine
+    # -e removes all imges from the machine
+    e)
+      remove_images=true
+      ;;
+    # -r restart all the containers in the machine
     r)
       remove_images=true
       ;;
@@ -43,15 +48,18 @@ while getopts ":drp" opt; do
 done
 
 # Main switch-case logic based on flag values
-case "$compose_down,$remove_images,$pull_images" in
-  true,false,*)
+case "$compose_down,$remove_images,$pull_images,$compose_restart" in
+  true,false,*,*)
     docker compose --file $compose_file down
     ;;
-  true,true,*)
+  true,true,*,*)
     docker compose --file $compose_file down
     docker compose --file $compose_file down --rmi 'all'
     ;;
-  *,*,true)
+  *,*,*,true)
+    docker compose --file $compose_file restart
+    ;;
+  *,*,true,*)
     docker compose --file $compose_file pull
     ;;
   *)
