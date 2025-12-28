@@ -29,3 +29,6 @@ Options:
 - `-p` pull all the images defined in the compose
 
     Example: `compose.sh pihole -p`
+
+## SSO
+In order to avoid having one account for each user on each app, keycloak is deployed to manage SSO.
