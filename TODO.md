@@ -5,6 +5,7 @@ TODO
 - GitLab
 - Ollama
 - Obsidian
+- uptime-kuma
 - Immich (still evaluating)
 
 ## Fix
