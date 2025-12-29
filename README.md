@@ -16,6 +16,10 @@ Example: `compose.sh pihole`
 
 With flags: `compose.sh <env> -dr`
 
+If a command (such as pull images) has to be executed to all the compose us the keyword `all`
+
+Example: `compose.sh <env> -p`
+
 Options:
 - `-d` run `docker compose down` down instead of `docker compose up`
 
