@@ -1,23 +1,36 @@
 #!/bin/bash
 
+validate_env() {
+  folder=$1
+  echo "validating $folder"
+  # Check if the folder exists
+  if [ ! -d "$folder" ]; then
+    echo "Folder $1 doesn't exist."
+    exit 1
+  # Check if the compose.yaml file exists in the folder
+  elif [ ! -f $compose_file ]; then
+    echo "Compose file $compose_file doesn't exists"
+    exit 2
+  fi
+}
+
+compose_files=()
+
 # If the character * is passed insteas of the name of an existing folder execute the command for each folder with a compose.yaml file
 if [ "$1" = "all" ]; then # 
   compose_files=$( find . -name "compose.yaml" -type f )
   echo $compose_files
-elif [ ! -d "$1" ]; then # Check if the environment exists
-  echo "Folder $1 doesn't exist."
-  exit 1
-fi
-
-# Working on a single directory instead of multiple ones
-# Inside the specified folder, the compose file has to exists
-if [ "$1" != "all" ]; then
-  compose_file="$1/compose.yaml"
-  if [ ! -f $compose_file ]; then
-    echo "Compose file $compose_file doesn't exists"
-    exit 2
-  fi
-  compose_files=($compose_file)
+# Check if multiple environments separated by a comma are passed
+elif [[ "$1" == *","* ]]; then 
+  IFS=',' read -ra folders <<< "$1"
+  for folder in "${folders[@]}"; do
+    validate_env $folder
+    compose_files+=" $folder/compose.yaml"
+  done
+# Working on a single environment
+else
+  validate_env $1
+  compose_files="$1/compose.yaml"
 fi
 
 # Initialize flags
@@ -34,7 +47,7 @@ while getopts ":depr" opt; do
     d)
       compose_down=true
       ;;
-    # -e removes all imges from the machine
+    # -e removes all images from the machine
     e)
       remove_images=true
       ;;
@@ -42,8 +55,7 @@ while getopts ":depr" opt; do
     r)
       remove_images=true
       ;;
-    # -p update the image of the container 
-    # This is ment for all the 
+    # -p pull the images defined in a compose file
     p)
       pull_images=true
       ;;
@@ -54,8 +66,9 @@ while getopts ":depr" opt; do
   esac
 done
 
-# Main switch-case logic based on flag values
+# Looping over all the compose file specified
 for compose_file in $compose_files; do
+  # Main switch-case logic based on flag values
   case "$compose_down,$remove_images,$pull_images,$compose_restart" in
     true,false,*,*)
       docker compose --file $compose_file down

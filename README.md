@@ -16,9 +16,14 @@ Example: `compose.sh pihole`
 
 With flags: `compose.sh <env> -dr`
 
-If a command (such as pull images) has to be executed to all the compose us the keyword `all`
+If a command (such as pull images) has to be executed to multiple specific compose, specify the name separated by a comma
 
-Example: `compose.sh <env> -p`
+Example: `compose.sh jellyfin,pihole -p`
+
+
+If a command (such as pull images) has to be executed to all the compose use the keyword `all`
+
+Example: `compose.sh all -p`
 
 Options:
 - `-d` run `docker compose down` down instead of `docker compose up`
