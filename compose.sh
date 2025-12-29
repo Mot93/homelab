@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# Check if the environment exists
-if [ ! -d "$1" ]; then
-  echo "$1 does not exist."
+# If the character * is passed insteas of the name of an existing folder execute the command for each folder with a compose.yaml file
+if [ "$1" = "all" ]; then # 
+  compose_files=$( find . -name "compose.yaml" -type f )
+  echo $compose_files
+elif [ ! -d "$1" ]; then # Check if the environment exists
+  echo "Folder $1 doesn't exist."
   exit 1
 fi
 
-# Check if the file compose.yaml exists, if it doesn't: exit the script
-compose_file="$1/compose.yaml"
-if [ ! -f $compose_file ]; then
-  echo "$compose_file doesn't exists"
-  exit 2
+# Working on a single directory instead of multiple ones
+# Inside the specified folder, the compose file has to exists
+if [ "$1" != "all" ]; then
+  compose_file="$1/compose.yaml"
+  if [ ! -f $compose_file ]; then
+    echo "Compose file $compose_file doesn't exists"
+    exit 2
+  fi
+  compose_files=($compose_file)
 fi
 
 # Initialize flags
@@ -48,21 +55,23 @@ while getopts ":depr" opt; do
 done
 
 # Main switch-case logic based on flag values
-case "$compose_down,$remove_images,$pull_images,$compose_restart" in
-  true,false,*,*)
-    docker compose --file $compose_file down
-    ;;
-  true,true,*,*)
-    docker compose --file $compose_file down
-    docker compose --file $compose_file down --rmi 'all'
-    ;;
-  *,*,*,true)
-    docker compose --file $compose_file restart
-    ;;
-  *,*,true,*)
-    docker compose --file $compose_file pull
-    ;;
-  *)
-    docker compose --file $compose_file up -d
-    ;;
-esac
+for compose_file in $compose_files; do
+  case "$compose_down,$remove_images,$pull_images,$compose_restart" in
+    true,false,*,*)
+      docker compose --file $compose_file down
+      ;;
+    true,true,*,*)
+      docker compose --file $compose_file down
+      docker compose --file $compose_file down --rmi 'all'
+      ;;
+    *,*,*,true)
+      docker compose --file $compose_file restart
+      ;;
+    *,*,true,*)
+      docker compose --file $compose_file pull
+      ;;
+    *)
+      docker compose --file $compose_file up -d
+      ;;
+  esac
+done
