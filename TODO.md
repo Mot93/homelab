@@ -1,14 +1,14 @@
 # TODO
-List of features to work on and the issue to fix.
+List of features and features to work on.
 
-## Features
-- GitLab
-- Ollama
-- Obsidian
-- uptime-kuma
-- Immich (still evaluating)
-- All READMEs
+## Todo
+- [] GitLab
+- [] uptime-kuma
+- [] Ollama
+- [] Obsidian
+- [] Immich (still evaluating)
+- [] All READMEs
 
-## Fix
-- Map jellyfin volumes to avoid dynamically creates them by docker
-- Change where volumes are sotred, if it's not necessary, leave life cycle to docker
+## In Progress
+- [] Change where volumes are sotred, if it's not necessary, leave life cycle to docker
+- [] Keycloak
