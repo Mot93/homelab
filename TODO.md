@@ -7,7 +7,7 @@ List of features to work on and the issue to fix.
 - Obsidian
 - uptime-kuma
 - Immich (still evaluating)
-- Pihole README
+- All READMEs
 
 ## Fix
 - Map jellyfin volumes to avoid dynamically creates them by docker
