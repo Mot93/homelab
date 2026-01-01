@@ -9,10 +9,26 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - $HOME/dockercompose/qbittorrent/appdata:/config
-      - $HOME/dockercompose/jellyfin:/downloads #optional
+      - qbittorrent_data:/config
+      - qbittorrent_download:/downloads #optional
     ports:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+
+volumes:
+  qbittorrent_data:
+    name: qbittorrent
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/qbittorrent/data
+  qbittorrent_download:
+    name: qbittorrent
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/qbittorrent/download
