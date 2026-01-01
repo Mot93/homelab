@@ -9,4 +9,13 @@ services:
       - PHP_MEMORYLIMIT=256M
       - PHP_TIMEZONE=UTC
     volumes:
-      - $HOME/dockercompose/dokuwiki:/storage
+      - dokuwiki_data:/storage
+
+volumes:
+  dokuwiki_data:
+    name: dokuwiki
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/dokuwiki/data
