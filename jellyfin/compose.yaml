@@ -10,7 +10,7 @@ services:
     volumes:
       - $DOCKER_VOLUMES/jellyfin/config:/config
       - $DOCKER_VOLUMES/jellyfin/cache:/cache
-      - $DOCKER_VOLUMES/qbittorrent/download:/qbittorrent/download:ro # Read Only
+      - $DOCKER_VOLUMES/qbittorrent/downloads:/qbittorrent/downloads:ro # Read Only
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     # environment:

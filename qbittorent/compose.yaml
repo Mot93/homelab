@@ -10,7 +10,7 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - $DOCKER_VOLUMES/qbittorrent/data:/config
-      - $DOCKER_VOLUMES/qbittorrent/download:/downloads #optional
+      - $DOCKER_VOLUMES/qbittorrent/downloads:/downloads #optional
     ports:
       - 8080:8080
       - 6881:6881
