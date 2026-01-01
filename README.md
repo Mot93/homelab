@@ -1,6 +1,16 @@
 # Home Lab
 This is a collection of all the installation in my homelab.
 
+## General configurations
+Some configurations are shared across application, all are stored in the `.env` file in the root directory.
+
+Example:
+```bash
+# Base path where to store all the docker compose volumes
+# also used by rsync to backup configurations and data
+DOCKER_VOLUMES="path/to/volumes"
+```
+
 ## Docker compose
 Most application are managed using [`docker compose`](https://docs.docker.com/compose/).
 To automate most processes the script `compose.sh` was created.

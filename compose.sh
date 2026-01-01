@@ -33,6 +33,9 @@ else
   compose_files="$1/compose.yaml"
 fi
 
+source .env
+export DOCKER_VOLUMES
+
 # Initialize flags
 compose_down=false
 remove_images=false
@@ -53,7 +56,7 @@ while getopts ":depr" opt; do
       ;;
     # -r restart all the containers in the machine
     r)
-      remove_images=true
+      compose_restart=true
       ;;
     # -p pull the images defined in a compose file
     p)
@@ -69,22 +72,23 @@ done
 # Looping over all the compose file specified
 for compose_file in $compose_files; do
   # Main switch-case logic based on flag values
+  command=""
   case "$compose_down,$remove_images,$pull_images,$compose_restart" in
     true,false,*,*)
-      docker compose --file $compose_file down
+      command="down"
       ;;
     true,true,*,*)
-      docker compose --file $compose_file down
-      docker compose --file $compose_file down --rmi 'all'
+      command="down --rmi all"
       ;;
     *,*,*,true)
-      docker compose --file $compose_file restart
+      command="restart"
       ;;
     *,*,true,*)
-      docker compose --file $compose_file pull
+      command="pull"
       ;;
     *)
-      docker compose --file $compose_file up -d
+      command="up -d"
       ;;
   esac
+  docker compose --file $compose_file $command
 done
