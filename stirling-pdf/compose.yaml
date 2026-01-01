@@ -5,14 +5,5 @@ services:
     ports:
       - '8090:8080'
     volumes:
-      - stirling_pdf_data:/configs
+      - $DOCKER_VOLUMES/stirling_pdf/data:/configs
     restart: unless-stopped
-
-volumes:
-  stirling_pdf_data:
-    name: stirling_pdf
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: $DOCKER_VOLUMES/stirling_pdf/data
