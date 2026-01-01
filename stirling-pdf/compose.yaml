@@ -5,5 +5,14 @@ services:
     ports:
       - '8090:8080'
     volumes:
-      - $HOME/dockercompose/stirling-data:/configs
+      - stirling_pdf_data:/configs
     restart: unless-stopped
+
+volumes:
+  stirling_pdf_data:
+    name: stirling_pdf
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/stirling_pdf/data
