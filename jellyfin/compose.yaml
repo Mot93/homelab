@@ -8,10 +8,9 @@ services:
       - 8096:8096/tcp
       - 7359:7359/udp
     volumes:
-      - type: bind
-        source: $HOME/dockercompose/jellyfin
-        target: /media
-        read_only: true
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+      - qbittorrent_download:/qbittorrent/download
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     # environment:
@@ -19,3 +18,27 @@ services:
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
     extra_hosts:
       - 'host.docker.internal:host-gateway'
+
+volumes:
+  jellyfin_config:
+    name: jellyfin
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/jellyfin/config
+  jellyfin_cache:
+    name: jellyfin
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/jellyfin/cache
+  qbittorrent_download:
+    name: qbittorrent
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: $DOCKER_VOLUMES/qbittorrent/download
+      read_only: true
