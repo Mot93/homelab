@@ -2,7 +2,7 @@
 
 validate_env() {
   folder=$1
-  echo "validating $folder"
+  # echo "validating $folder"
   # Check if the folder exists
   if [ ! -d "$folder" ]; then
     echo "Folder $1 doesn't exist."
@@ -12,6 +12,7 @@ validate_env() {
     echo "Compose file $compose_file doesn't exists"
     exit 2
   fi
+  echo "$folder valid"
 }
 
 compose_files=()
