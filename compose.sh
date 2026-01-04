@@ -20,7 +20,10 @@ compose_files=()
 # If the character * is passed insteas of the name of an existing folder execute the command for each folder with a compose.yaml file
 if [ "$1" = "all" ]; then # 
   compose_files=$( find . -name "compose.yaml" -type f )
-  echo $compose_files
+  echo "environments found:"
+  for compose in $compose_files; do
+    echo $compose
+  done
 # Check if multiple environments separated by a comma are passed
 elif [[ "$1" == *","* ]]; then 
   IFS=',' read -ra folders <<< "$1"
