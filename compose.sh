@@ -68,7 +68,7 @@ while getopts ":depr" opt; do
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
-      exit 1
+      exit 3
       ;;
   esac
 done
@@ -83,6 +83,12 @@ for compose_file in $compose_files; do
       ;;
     true,true,*,*)
       command="down --rmi all"
+      ;;
+    false,true,*,*)
+      # Cannot delete an image if the a container is using it
+      # Force to stop all containers instances before deleting image
+      echo "To use -e it's also necessary to use -d. Example ./compose.sh -ed"
+      exit 4
       ;;
     *,*,*,true)
       command="restart"
