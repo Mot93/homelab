@@ -1,9 +1,0 @@
-services:
-  stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
-    container_name: stirling-pdf
-    ports:
-      - '8090:8080'
-    volumes:
-      - $DOCKER_VOLUMES/stirling_pdf/data:/configs
-    restart: unless-stopped
