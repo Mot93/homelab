@@ -5,6 +5,7 @@ List of features and issues being worked on.
 - [ ] Keycloak
 
 ## Todo
+- [ ] Perplexica
 - [ ] uptime-kuma
 - [ ] GitLab
 - [ ] Ollama + Open WebUI
