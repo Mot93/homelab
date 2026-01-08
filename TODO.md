@@ -7,7 +7,7 @@ List of features and issues being worked on.
 ## Todo
 - [ ] uptime-kuma
 - [ ] GitLab
-- [ ] Ollama
+- [ ] Ollama + Open WebUI
 - [ ] All READMEs
 
 ## Evaluating
