@@ -37,8 +37,14 @@ else
   compose_files="$1/compose.yaml"
 fi
 
-source .env
-export DOCKER_VOLUMES
+global_env="./.env"
+if [ -f $global_env ]; then
+  source $global_env
+  export DOCKER_VOLUMES
+else
+  echo "Missing $global_env file in the root folder"
+  exit 5
+fi
 
 # Initialize flags
 compose_down=false
