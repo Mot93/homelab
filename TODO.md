@@ -2,6 +2,7 @@
 List of features and issues being worked on.
 
 ## In Progress
+- [ ] [nginx proxy manager](https://github.com/NginxProxyManager/nginx-proxy-manager)
 - [ ] Keycloak
     - [ ] Remove volumes created automatically, use local storage instead 
 
