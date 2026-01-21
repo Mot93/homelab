@@ -2,6 +2,7 @@ services:
   nproxymanager:
     image: 'docker.io/jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
+    # Necessary if you want to reach other app exposed on localhost
     network_mode: "host"
     ports:
       - 80:80
