@@ -1,2 +1,5 @@
 # Don't consider env values for the docker
 .env
+
+# Ignore backups
+backup_*.tar.gz
