@@ -76,5 +76,15 @@ Available options:
     compose.sh pihole -p
     ```
 
+## Backup
+To backup the infrastructure:
+```bash
+backup.sh
+```
+Restore a backup:
+```bash
+backup.sh -r <backup name>
+```
+
 ## SSO
 In order to avoid having one account for each user on each app, keycloak is deployed to manage SSO.
