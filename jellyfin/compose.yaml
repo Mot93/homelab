@@ -6,7 +6,7 @@ services:
     # user: uid:gid
     ports:
       - 8096:8096/tcp
-      - 7359:7359/udp
+      # - 7359:7359/udp
     volumes:
       - $DOCKER_VOLUMES/jellyfin/config:/config
       - $DOCKER_VOLUMES/jellyfin/cache:/cache
