@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     volumes:
       - $DOCKER_VOLUMES/uptimekuma/data:/app/data
+      # Cecessary to monitor containers
+      # Exposing the Docker socket or TCP port to Uptime Kuma, gives that full control over the Docker daemon on the host
+      # - /var/run/docker.sock:/var/run/docker.sock
     ports:
       # <Host Port>:<Container Port>
       - "3001:3001"
