@@ -23,6 +23,8 @@ services:
       FTLCONF_webserver_api_password: $FTLCONF_webserver_api_password
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'ALL'
       FTLCONF_dns_listeningMode: 'ALL'
+      # Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon
+      FTLCONF_dns_upstreams: '1.1.1.1;8.8.8.8'
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
