@@ -18,20 +18,30 @@ validate_env() {
 compose_files=()
 
 compose_folder="$(cd "$(dirname $0)" && pwd)"
+apps=$1
 
-# If the character * is passed insteas of the name of an existing folder execute the command for each folder with a compose.yaml file
-if [ "$1" = "all" ]; then # 
+# If the string installed is passed execute the command on the environment specified in the var 
+if [ "$1" = "installed" ]; then # 
+  echo "compose: $compose_folder/hidden.env"
+  source "$compose_folder/hidden.env"
+  echo "installed: $INSTALLED"
+  apps=$INSTALLED
+  echo "apps: $apps"
+fi
+
+# If the string all is passed execute the command for each folder with a compose.yaml file
+if [ "$apps" = "all" ]; then # 
   compose_files=$( find "$compose_folder/" -name "compose.yaml" -type f )
   echo "environments found:"
   for compose in $compose_files; do
     echo $compose
   done
 # Check if multiple environments separated by a comma are passed
-elif [[ "$1" == *","* ]]; then 
-  IFS=',' read -ra folders <<< "$1"
+elif [[ "$apps" == *","* ]]; then 
+  IFS=',' read -ra folders <<< "$apps"
   for folder in "${folders[@]}"; do
     validate_env $compose_folder/$folder
-    compose_files+=" $compose_folder/$folder/compose.yaml"
+    compose_files+=" $folder/compose.yaml"
   done
 # Working on a single environment
 else
