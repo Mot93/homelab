@@ -1,0 +1,72 @@
+version: '3'
+
+tasks:
+
+  up:
+    desc: docker compose up
+    summary: |
+      Running docker compose up on one or more specified environment
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmd: ./compose.sh {{.env}}
+
+  down:
+    desc: docker compose down
+    summary: |
+      Running docker compose down on one or more specified environment
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmd: ./compose.sh {{.env}} -d
+
+  rm:
+    desc: docker compose down --rmi all
+    summary: |
+      Running docker compose down --rmi all on one or more specified environment
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmd: ./compose.sh {{.env}} -de
+
+  restart:
+    desc: docker compose restart
+    summary: |
+      Running docker compose restart on one or more specified environment
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmd: ./compose.sh {{.env}} -r
+
+  pull:
+    desc: docker compose pull
+    summary: |
+      Running docker compose pull on one or more specified environment
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmd: ./compose.sh {{.env}} -p
+
+  update:
+    desc: update compose
+    summary: |
+      Running docker compose pull, docker compose down and docker compose pull
+      Compose file can be found in each folder
+    requires:
+      vars:
+        - name: env
+    cmds: 
+      - ./compose.sh {{.env}} -p
+      - ./compose.sh {{.env}} -d
+      - ./compose.sh {{.env}}
+
+  backup:
+    desc: Backing up compose volumes
+    summary: |
+      Hello
+    cmd: ./backup.sh
