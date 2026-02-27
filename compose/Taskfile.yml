@@ -10,7 +10,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmd: ./compose.sh {{.env}}
+    cmd: "{{.TASKFILE_DIR}}/compose.sh {{.env}}"
 
   down:
     desc: docker compose down
@@ -20,7 +20,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmd: ./compose.sh {{.env}} -d
+    cmd: "{{.TASKFILE_DIR}}/compose.sh {{.env}} -d"
 
   rm:
     desc: docker compose down --rmi all
@@ -30,7 +30,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmd: ./compose.sh {{.env}} -de
+    cmd: "{{.TASKFILE_DIR}}/compose.sh {{.env}} -de"
 
   restart:
     desc: docker compose restart
@@ -40,7 +40,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmd: ./compose.sh {{.env}} -r
+    cmd: "{{.TASKFILE_DIR}}/compose.sh {{.env}} -r"
 
   pull:
     desc: docker compose pull
@@ -50,7 +50,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmd: ./compose.sh {{.env}} -p
+    cmd: "{{.TASKFILE_DIR}}/compose.sh {{.env}} -p"
 
   update:
     desc: update compose
@@ -61,12 +61,12 @@ tasks:
       vars:
         - name: env
     cmds: 
-      - ./compose.sh {{.env}} -p
-      - ./compose.sh {{.env}} -d
-      - ./compose.sh {{.env}}
+      - "{{.TASKFILE_DIR}}/compose.sh {{.env}} -p"
+      - "{{.TASKFILE_DIR}}/compose.sh {{.env}} -d"
+      - "{{.TASKFILE_DIR}}/compose.sh {{.env}}"
 
   backup:
     desc: Backing up compose volumes
     summary: |
       Hello
-    cmd: ./backup.sh
+    cmd: "{{.TASKFILE_DIR}}/backup.sh"

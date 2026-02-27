@@ -1,5 +1,5 @@
 # Don't consider env values for the docker
-.env
+compose/*/.env
 
 # Ignore backups
 backup_*.tar.gz

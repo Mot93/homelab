@@ -17,9 +17,11 @@ validate_env() {
 
 compose_files=()
 
+compose_folder="$(cd "$(dirname $0)" && pwd)"
+
 # If the character * is passed insteas of the name of an existing folder execute the command for each folder with a compose.yaml file
 if [ "$1" = "all" ]; then # 
-  compose_files=$( find . -name "compose.yaml" -type f )
+  compose_files=$( find "$compose_folder/" -name "compose.yaml" -type f )
   echo "environments found:"
   for compose in $compose_files; do
     echo $compose
@@ -28,16 +30,16 @@ if [ "$1" = "all" ]; then #
 elif [[ "$1" == *","* ]]; then 
   IFS=',' read -ra folders <<< "$1"
   for folder in "${folders[@]}"; do
-    validate_env $folder
-    compose_files+=" $folder/compose.yaml"
+    validate_env $compose_folder/$folder
+    compose_files+=" $compose_folder/$folder/compose.yaml"
   done
 # Working on a single environment
 else
-  validate_env $1
-  compose_files="$1/compose.yaml"
+  validate_env $compose_folder/$1
+  compose_files="$compose_folder/$1/compose.yaml"
 fi
 
-global_env="./.env"
+global_env="$compose_folder/config.env"
 if [ -f $global_env ]; then
   source $global_env
   export DOCKER_VOLUMES

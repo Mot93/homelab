@@ -1,6 +1,7 @@
 #!/bin/bash
 
-global_env="./.env"
+compose_folder="$(cd "$(dirname $0)" && pwd)"
+global_env="$compose_folder/config.env"
 
 if [ -f $global_env ]; then
   source $global_env
