@@ -4,7 +4,7 @@ Using [docker compose](https://docs.docker.com/compose/) to manage installations
 
 ## General configurations
 
-Some configurations are shared across application, all are stored in the `.env` file in the root directory.
+Some configurations are shared across application, all are stored in the `config.env` file in the root directory.
 
 Example:
 
@@ -12,6 +12,15 @@ Example:
 # Base path where to store all the docker compose volumes
 # also used by rsync to backup configurations and data
 DOCKER_VOLUMES="path/to/volumes"
+```
+
+Some configurations are to be hidden and not tracked by git in the configuration file `hidden.env`.
+
+Example:
+
+```bash
+# For easier management of an enviroment where only some of the applications are installed.
+INSTALLED="app1,app2"
 ```
 
 ## Task
