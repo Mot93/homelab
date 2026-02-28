@@ -2,6 +2,9 @@ version: '3'
 
 tasks:
 
+  default:
+    cmd: task --list
+
   up:
     desc: docker compose up
     summary: |
@@ -27,6 +30,7 @@ tasks:
     summary: |
       Running docker compose down --rmi all on one or more specified environment
       Compose file can be found in each folder
+    prompt: "This will remove everyhting, are you sure?"
     requires:
       vars:
         - name: env
@@ -60,7 +64,7 @@ tasks:
     requires:
       vars:
         - name: env
-    cmds: 
+    cmds:
       - task: pull
       - task: down
       - task: up
