@@ -28,6 +28,7 @@ log() {
     local YELLOW='\033[1;33m'
     local CYAN='\033[0;36m'
     local GREEN='\033[0;32m'
+    local PURPLE='\033[0;35m'
     local NC='\033[0m' # No Color
 
     # Print to console with color
@@ -45,7 +46,7 @@ log() {
             echo -e "${RED}$log_entry${NC}" >&2
             ;;
         *)
-            echo -e "$log_entry"
+            echo -e "${PURPLE}$log_entry${NC}"
             ;;
     esac
 
