@@ -61,9 +61,9 @@ tasks:
       vars:
         - name: env
     cmds: 
-      - "{{.TASKFILE_DIR}}/compose.sh {{.env}} -p"
-      - "{{.TASKFILE_DIR}}/compose.sh {{.env}} -d"
-      - "{{.TASKFILE_DIR}}/compose.sh {{.env}}"
+      - task: pull
+      - task: down
+      - task: up
 
   backup:
     desc: Backing up compose volumes
