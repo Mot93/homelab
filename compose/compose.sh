@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -e
+set -eu
 
 # Check if the specified folder exists and if it contains a compose.yaml file
 validate_env() {
@@ -16,7 +16,7 @@ validate_env() {
     log "ERROR" "Compose file $compose_file doesn't exists" $log_file
     exit 2
   fi
-  log "INFO" "$folder valid"
+  log "INFO" "$folder valid" $log_file
 }
 
 compose_folder="$(cd "$(dirname $0)" && pwd)"
