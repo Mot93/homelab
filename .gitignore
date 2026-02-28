@@ -1,6 +1,9 @@
-# Don't consider env values for the docker
+# Ingore configurations that need to remain hidden
 compose/*/.env
 hidden.env
+
+# Ingore logs
+*.log
 
 # Ignore backups
 backup_*.tar.gz
