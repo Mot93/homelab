@@ -1,0 +1,23 @@
+version: '3'
+
+vars:
+  inventory: inventory.yaml
+
+tasks:
+
+  default:
+    cmd: task --list
+
+  inv:
+    desc: Test inventory
+    cmd: ansible-inventory -i {{.inventory}} --list
+
+  ping:
+    desc: Ping all the hosts
+    cmds: 
+      - for: ['apt', 'dnf']
+        cmd: ansible {{.ITEM}} -m ping -i {{.inventory}}
+
+  test:
+    desc: Launch playbook.yaml
+    cmd: ansible-playbook -i {{.inventory}} playbook.yaml

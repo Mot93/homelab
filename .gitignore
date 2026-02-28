@@ -1,6 +1,8 @@
 # Ingore configurations that need to remain hidden
 compose/*/.env
 hidden.env
+inventory.yaml
+inventory.ini
 
 # Ingore logs
 *.log
