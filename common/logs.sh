@@ -14,7 +14,6 @@ log() {
     # Get level, message and file where to store
     local level=$1
     local message=$2
-    local log_file=$3
     # Config logs
     local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
     if [ "$level" == "SUCCESS" ]; then
@@ -53,7 +52,8 @@ log() {
     # The third postional argument should be the directory where to store the log
     # Check if the third positional argument has been passed
     if [ -n "$3" ]; then
-        log_dir=$(dirname $3)
+        local log_file="$3"
+        local log_dir=$(dirname $log_file)
         if [ -d $log_dir ]; then
             # Create the log file if it doesn't exist
             touch "$log_file"
