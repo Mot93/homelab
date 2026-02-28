@@ -11,3 +11,13 @@ To get the list of all the commands:
 ```bash
 task --list
 ```
+
+## Ansible
+
+[Ansible](https://docs.ansible.com/projects/ansible/latest/index.html) is a great tool to manage linux hosts.
+
+## Compose
+
+[Docker](https://docs.docker.com/) [compose](https://docs.docker.com/compose/) it's the perfect tool to manage and replicate applications deployment.
+
+In the compose folder there is everything needed to deploy all the applications available via container.
