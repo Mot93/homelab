@@ -1,4 +1,14 @@
 version: '3'
 
 includes:
-  compose: ./compose
+  compose: 
+    taskfile: ./compose
+    dir: ./compose
+  ansible: 
+    taskfile: ./ansible
+    dir: ./ansible
+
+tasks:
+
+  default:
+    cmd: task --list

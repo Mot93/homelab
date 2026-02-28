@@ -18,6 +18,6 @@ tasks:
       - for: ['apt', 'dnf']
         cmd: ansible {{.ITEM}} -m ping -i {{.inventory}}
 
-  test:
-    desc: Launch playbook.yaml
+  update:
+    desc: Launch playbook.yaml to update hosts
     cmd: ansible-playbook -i {{.inventory}} playbook.yaml
