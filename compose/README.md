@@ -50,6 +50,8 @@ Optional files:
 
 - `.env` file not tracked by git containing sensistive data that will be loaded together with the `compose.yaml`.
 
+    All the configuration that can be tracked must be in the `compose.yaml` file.
+
 ### How to use `compose.sh`
 
 Launch `./compose.sh` followed by a the name of a directory containing a `compose.yaml` file.
