@@ -95,7 +95,6 @@ while getopts ":depr" opt; do
       ;;
     \?)
       log "ERROR" "Invalid option: -$OPTARG" $log_file
-      # echo "Invalid option: -$OPTARG" >&2
       exit 3
       ;;
   esac
