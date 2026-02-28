@@ -23,6 +23,11 @@ Example:
 INSTALLED="app1,app2"
 ```
 
+```bash
+# Can be used also for a single applicatation.
+INSTALLED="app1"
+```
+
 ## Task
 
 You can use [task](https://github.com/go-task/task) as a wrapper.
