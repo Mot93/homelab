@@ -49,8 +49,9 @@ elif [[ "$apps" == *","* ]]; then
   log "INFO" "Multiple applications specified" $log_file
   IFS=',' read -ra folders <<< "$apps"
   for folder in "${folders[@]}"; do
-    validate_env $compose_folder/$folder $log_file
-    compose_files+=" $folder/compose.yaml"
+    folder_path="$compose_folder/$folder"
+    validate_env $folder_path $log_file
+    compose_files+=" $folder_path/compose.yaml"
   done
 # Working on a single environment
 else
