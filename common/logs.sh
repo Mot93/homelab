@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
-# Example use
-
 # Simple use
 # log "ERROR" "The application crashed"
 # Storing logs into 
@@ -21,8 +17,10 @@ log() {
     local log_file=$3
     # Config logs
     local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
-    if [ level=="SUCCESS" ]; then
+    if [ "$level" == "SUCCESS" ]; then
         local log_entry="[$timestamp] [INFO] $message"
+    else
+        local log_entry="[$timestamp] [$level] $message"
     fi
 
     # Color config
@@ -45,7 +43,7 @@ log() {
             echo -e "${YELLOW}$log_entry${NC}"
             ;;
         "ERROR")
-            echo -e "${RED}$log_entry${NC}"
+            echo -e "${RED}$log_entry${NC}" >&2
             ;;
         *)
             echo -e "$log_entry"
@@ -64,6 +62,7 @@ log() {
             echo "$log_entry" >> "$log_file"
         else
             echo -e "${RED}The log '$message' cannot be stored because the directory '$log_dir' does not exists${NC}"
+            exit 1
         fi
     fi
 }
