@@ -20,4 +20,4 @@ tasks:
 
   update:
     desc: Launch playbook.yaml to update hosts
-    cmd: ansible-playbook -i {{.inventory}} playbook.yaml
+    cmd: ansible-playbook -i {{.inventory}} playbooks/update.yaml
