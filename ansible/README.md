@@ -17,4 +17,9 @@ dnf:
   hosts:
     dnf_host1:
       ansible_host: xx.xx.xx.xx
+
+linux:
+  children:
+    apt:
+    dnf:
 ```

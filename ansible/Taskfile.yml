@@ -15,7 +15,7 @@ tasks:
   ping:
     desc: Ping all the hosts
     cmds: 
-      - for: ['apt', 'dnf']
+      - for: ['linux']
         cmd: ansible {{.ITEM}} -m ping -i {{.inventory}}
 
   update:
