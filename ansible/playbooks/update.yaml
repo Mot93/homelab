@@ -1,14 +1,14 @@
 - name: APT hosts
   hosts: apt
   tasks:
-    
+
     - name: Update all packages to their latest version
       become: true
       ansible.builtin.apt:
         name: "*"
         state: latest
 
-- name: DNF playbook
+- name: DNF hosts
   hosts: dnf
   become: true
   tasks:

@@ -4,7 +4,7 @@ Using [Ansible](https://docs.ansible.com/projects/ansible/latest/index.html) to 
 
 ## Inventory
 
-Create the inventory file `inventory.yaml`:
+Create the inventory file `inventory/inventory.yaml`:
 
 ```yaml
 apt:

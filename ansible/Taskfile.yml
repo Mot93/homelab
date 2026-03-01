@@ -1,7 +1,7 @@
 version: '3'
 
 vars:
-  inventory: inventory.yaml
+  inventory: inventory/inventory.yaml
 
 tasks:
 
@@ -19,5 +19,9 @@ tasks:
         cmd: ansible {{.ITEM}} -m ping -i {{.inventory}}
 
   update:
-    desc: Launch playbook.yaml to update hosts
+    desc: Launch update.yaml to update hosts
     cmd: ansible-playbook -i {{.inventory}} playbooks/update.yaml
+  
+  install:
+    desc: Launch install.yaml to install desired software
+    cmd: ansible-playbook -i {{.inventory}} playbooks/install.yaml
