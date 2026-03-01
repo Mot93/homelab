@@ -10,18 +10,24 @@ tasks:
 
   inv:
     desc: Test inventory
+    summary: Check that the inventory file is configured correctly
     cmd: ansible-inventory -i {{.inventory}} --list
 
   ping:
     desc: Ping all the hosts
+    summary: Check that all the hosts are reachable 
     cmds: 
       - for: ['linux']
         cmd: ansible {{.ITEM}} -m ping -i {{.inventory}}
 
   update:
-    desc: Launch update.yaml to update hosts
+    desc: Update hosts
+    summary: Update all the installed packages using the pakcage manager
     cmd: ansible-playbook -i {{.inventory}} playbooks/update.yaml
   
   install:
-    desc: Launch install.yaml to install desired software
+    desc: Install desired software
+    summary: |
+      Install the desired list of softwares
+      Manages also the repositories configurations
     cmd: ansible-playbook -i {{.inventory}} playbooks/install.yaml
