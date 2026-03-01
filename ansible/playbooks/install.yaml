@@ -1,0 +1,19 @@
+- name: APT hosts
+  hosts: apt
+  tasks:
+
+    - name: Install desired package
+      ansible.builtin.apt:
+        pkg:
+        - tmux
+
+- name: DNF hosts
+  hosts: dnf
+  become: true
+  tasks:
+
+    - name: Install desired package
+      ansible.builtin.dnf:
+        state: latest
+        name:
+          - tmux
