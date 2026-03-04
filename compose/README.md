@@ -89,6 +89,14 @@ Example:
 compose.sh all -p
 ```
 
+If a command (such as pull images) has to be executed to all the compose specified in the env variable `INSTALLED` use the keyword `installed`
+
+Example:
+
+```bash
+compose.sh installed -p
+```
+
 Available options:
 
 - `-d` run `docker compose down` down instead of `docker compose up`
