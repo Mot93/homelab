@@ -1,11 +1,14 @@
 - name: APT hosts
   hosts: apt
+  become: true
   tasks:
 
     - name: Install desired package
       ansible.builtin.apt:
         pkg:
         - tmux
+        - golang
+        - lazygit
 
 - name: DNF hosts
   hosts: dnf
@@ -17,3 +20,5 @@
         state: latest
         name:
           - tmux
+          - golang
+          # - lazygit
