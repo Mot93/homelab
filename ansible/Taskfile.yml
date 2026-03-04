@@ -31,3 +31,11 @@ tasks:
       Install the desired list of softwares
       Manages also the repositories configurations
     cmd: ansible-playbook -i {{.inventory}} playbooks/install.yaml
+
+  tmuxlab:
+    desc: Render tmuxlab system wide available 
+    summary: |
+      By placing the script tmuxlab into the folder /usr/local/bin/ make it available systemwide
+      Launch it by simply typing tmuxlab
+      Used to launch a tmux session calibrated to managing the homelab
+    cmd: ansible-playbook -i {{.inventory}} playbooks/tmuxlab.yaml
