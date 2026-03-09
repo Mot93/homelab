@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+
+  default:
+    cmd: task --list
+
+  test:
+    desc: Applying an nginx manifest for testing
+    summary: |
+      Applying the nginx manifest to test if the installation is working.
+      Check if deploying, pulling images and the load balancer is working.
+      Head to http://localhost to perform the check
+    cmd: kubectl apply -f manifests/nginx.yaml
