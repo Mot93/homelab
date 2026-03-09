@@ -30,6 +30,10 @@ In the compose folder there is everything needed to deploy all the applications 
 
 Best open source home automation server.
 
+## Kubernetes
+
+Leveraging [Kubernetes](https://kubernetes.io/) ecosystem to deploy and manage applications.
+
 ## Logs
 
 Folder where all the logs produced by the various part of this project conveys.
