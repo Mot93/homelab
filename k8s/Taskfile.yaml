@@ -1,14 +1,39 @@
 version: '3'
 
+vars:
+  TEST_MANIFEST: manifests/nginx.yaml
+
 tasks:
 
   default:
     cmd: task --list
 
   test:
-    desc: Applying an nginx manifest for testing
+    desc: Deploy an Nginx server for testing purposes
     summary: |
-      Applying the nginx manifest to test if the installation is working.
+      Applying the nginx manifest or installing and helm chart to test if the kubernetes infrastructure is working.
       Check if deploying, pulling images and the load balancer is working.
       Head to http://localhost to perform the check
-    cmd: kubectl apply -f manifests/nginx.yaml
+    requires:
+      vars:
+        - name: type
+          enum: ["manifest", "chart"]
+    cmds: 
+      - cmd: kubectl apply -f {{.TEST_MANIFEST}}
+        if: '{{eq .type "manifest"}}'
+      - cmd: helm upgrade --install --namespace test --create-namespace test helm/test
+        if: '{{eq .type "chart"}}'
+
+  test_rm:
+    desc: Remove the test deplyoment
+    requires:
+      vars:
+        - name: type
+          enum: ["manifest", "chart"]
+    cmds: 
+      - cmd: kubectl delete -f {{.TEST_MANIFEST}}
+        if: '{{eq .type "manifest"}}'
+      - cmd: helm uninstall --namespace test test
+        if: '{{eq .type "chart"}}'
+      - cmd: kubectl delete namespace test
+        if: '{{eq .type "chart"}}'

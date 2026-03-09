@@ -1,10 +1,16 @@
 # Simple Nginx web server that answer with the default page
 # This is ment to be used to test a kubernetes installation
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namespace: test
   labels:
     app: nginx
 spec:
@@ -29,12 +35,12 @@ spec:
           limits:
             cpu: "500m"   # 0.5 CPU
             memory: "512Mi"
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  namespace: test
 spec:
   selector:
     app: nginx
