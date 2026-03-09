@@ -1,6 +1,6 @@
 # Home Lab
 
-This is a collection of all the software either running or that I would like to have in my homelab.
+This is a collection of all the software either running or that I would like to have in my home-lab.
 
 ## Task
 

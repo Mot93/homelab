@@ -53,7 +53,7 @@ Required files:
 
 Optional files:
 
-- `.env` file not tracked by git containing sensistive data that will be loaded together with the `compose.yaml`.
+- `.env` file not tracked by git containing sensitive data that will be loaded together with the `compose.yaml`.
 
     All the configuration that can be tracked must be in the `compose.yaml` file.
 
@@ -147,4 +147,8 @@ backup.sh -r <backup name>
 
 ## SSO
 
-In order to avoid having one account for each user on each app, keycloak is deployed to manage SSO.
+In order to avoid having one account for each user on each app, Keycloak is deployed to manage SSO.
+
+## Tips
+
+After updating a an application it's advisable to remove from the image registry the previously used image an free disk space.
