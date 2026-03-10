@@ -8,5 +8,6 @@ Leveraging [Kubernetes](https://kubernetes.io/) ecosystem to deploy and manage a
 
 ## Prod environment
 
-- [ ] TODO: research single server solutions.
-- [ ] TODO: automate installation e deployment.
+The [k3s](https://docs.k3s.io/) flavor of Kubernetes it's a good balance between production grade Kubernetes deployment, low resources usage and ample feature availability.
+
+Unfortunately with a lot of features a lot of configuring it's required.
