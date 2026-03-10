@@ -17,6 +17,8 @@ dnf:
   hosts:
     dnf_host1:
       ansible_host: xx.xx.xx.xx
+  vars:  
+    disable_firewalld: false
 
 linux:
   children:

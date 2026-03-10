@@ -1,0 +1,17 @@
+- name: DNF hosts
+  hosts: dnf
+  become: true
+  tasks:
+
+    - name: Install necessary packages
+      ansible.builtin.dnf:
+        state: latest
+        name:
+          - kernel-modules-extra
+
+    - name: Stop and disable firewalld
+      when: disable_firewalld
+      ansible.builtin.systemd_service:
+        state: started
+        enabled: false
+        name: firewalld

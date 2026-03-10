@@ -4,8 +4,9 @@ List of features and issues being worked on.
 
 ## In Progress
 
-- Find a suitable 1 node Kubernetes installation
-- Backup has to not backup the download folder of BitTorent
+- [ ] Write an ansible playbook to install k3s
+  - [ ]
+- [ ] Backup has to not backup the download folder of BitTorent
 - [ ] uptime-kuma
   - [x] kuma
   - [ ] [auto kuma](https://github.com/BigBoot/AutoKuma) for automatic monitoring

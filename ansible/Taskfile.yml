@@ -40,3 +40,9 @@ tasks:
       Launch it by simply typing tmuxlab
       Used to launch a tmux session calibrated to managing the homelab
     cmd: ansible-playbook -i {{.inventory}} playbooks/tmuxlab.yaml
+
+  k3s:
+    desc: Install k3s
+    summary: |
+      Install k3s on the hosts specified in the inventory file
+    cmd: ansible-playbook -i {{.inventory}} playbooks/k3s.yaml
