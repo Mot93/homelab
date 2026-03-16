@@ -6,7 +6,7 @@ List of features and issues being worked on.
 
 - [ ] Write an ansible playbook to install k3s
   - [ ]
-- [ ] Backup has to not backup the download folder of BitTorent
+- [ ] Backup has to not backup the download folder of BitTorrent
 - [ ] uptime-kuma
   - [x] kuma
   - [ ] [auto kuma](https://github.com/BigBoot/AutoKuma) for automatic monitoring
