@@ -5,7 +5,6 @@ List of features and issues being worked on.
 ## In Progress
 
 - [ ] Write an ansible playbook to install k3s
-  - [ ]
 - [ ] Backup has to not backup the download folder of BitTorrent
 - [ ] uptime-kuma
   - [x] kuma
@@ -27,4 +26,3 @@ List of features and issues being worked on.
 
 - [ ] Immich
 - [ ] Wasm Cloud
-- [ ] Perplexica or equivalent
