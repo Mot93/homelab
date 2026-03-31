@@ -1,0 +1,15 @@
+- name: tmuxlab
+  hosts: linux
+  tasks:
+
+  - name: Make tmuxlab custom script available to the whole system
+    ansible.builtin.copy:
+      become: true
+      src: ./../../common/tmuxlab.sh
+      dest: /usr/local/bin/tmuxlab
+      mode: u+x,g+x,o+x
+
+  - name: Set 
+    ansible.builtin.copy:
+      src: ./../../common/.taskrc.yml
+      dest: ~/.taskrc.yml

@@ -1,0 +1,2 @@
+# Task prompt users for missing required variables instead of failing
+interactive: true

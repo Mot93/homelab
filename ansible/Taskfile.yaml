@@ -33,13 +33,11 @@ tasks:
       Manages also the repositories configurations
     cmd: ansible-playbook -i {{.inventory}} playbooks/install.yaml
 
-  tmuxlab:
-    desc: Render tmuxlab system wide available 
+  configs:
+    desc: Config in multiple ways the linux host
     summary: |
-      By placing the script tmuxlab into the folder /usr/local/bin/ make it available systemwide
-      Launch it by simply typing tmuxlab
-      Used to launch a tmux session calibrated to managing the homelab
-    cmd: ansible-playbook -i {{.inventory}} playbooks/tmuxlab.yaml
+      Configure the linux host in multiple ways I like :)
+    cmd: ansible-playbook -i {{.inventory}} playbooks/config.yaml
 
   k3s:
     desc: Install k3s
