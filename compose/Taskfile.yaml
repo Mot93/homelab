@@ -21,6 +21,7 @@ tasks:
     summary: |
       Running docker compose down on one or more specified environment
       Compose file can be found in each folder
+    prompt: Are you sure you want to take down the specified containers?
     requires:
       vars:
         - name: env
