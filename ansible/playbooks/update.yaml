@@ -2,11 +2,16 @@
   hosts: apt
   tasks:
 
-    - name: Update all packages to their latest version
+    - name: Update apt package index
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600  # Cache is valid for 1 hour
+
+    - name: Upgrade all packages
       become: true
       ansible.builtin.apt:
-        name: "*"
-        state: latest
+        upgrade: dist
+        autoremove: yes
 
 - name: DNF hosts
   hosts: dnf
